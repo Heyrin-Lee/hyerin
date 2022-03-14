@@ -20,7 +20,7 @@ public class TodayExample {
 		
 		String name, number;
 		int age;
-		double heigh, weight;
+		double heigh, weight, basic;
 		
 		System.out.println("이름을 입력하세요.");
 		name = scn.nextLine();
@@ -40,17 +40,17 @@ public class TodayExample {
 		
 		System.out.println("몸무게를 입력하세요.");
 		weight = scn.nextDouble();
-		if(weight > (heigh-100)*0.9) {
-			System.out.println("과체중입니다.");
-		}else {
-				System.out.println("저체중입니다.");
-		}	
+		//if(weight > (heigh-100)*0.9) {
+			//System.out.println("과체중입니다.");
+		//}else {
+				//System.out.println("저체중입니다.");
+		//}	
 		
-		weight = 67.5; // 72.5 ~ 62.5 사이에 적정.
 		
-		double realweight = 69.3;
+		basic = (heigh-100)*0.9; // 72.5 ~ 62.5 사이에 적정.
 		
-		if(weight + 5>realweight && weight -5 <realweight) {
+		
+		if(basic + 5>weight && basic -5 <weight) {
 			System.out.println("적정몸무게입니다.");
 		} else {
 			System.out.println("비정상입니다.");
