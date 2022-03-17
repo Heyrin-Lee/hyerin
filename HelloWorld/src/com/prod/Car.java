@@ -7,7 +7,7 @@ public class Car {
 	private String model;
 	private int speed;
 	private int maxSpeed;
-	
+	private int breakSpeed;
 	
 	
 	
