@@ -23,7 +23,7 @@ public class FriendExample {
 		f3.email = "gef@naver.com";
 		f3.height = 175.5;
 		f3.weight = 55.2;
-		
+		///dfndknf
 		Friend[] friends = { f1, f2, f3 };
 		
 		System.out.println(f1); //f1에 입력된 이름, 이메일 등이 출력되는 것이 아니라 f1의 주소값이 출력된다.
