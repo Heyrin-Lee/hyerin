@@ -31,7 +31,7 @@ public class BankApp {
 				transperAmount();
 			} else if (menu == 9) {
 				showList();
-			} else if (menu == 5) {
+			} else if (menu == 6) {
 				System.out.println("프로그램을 종료합니다.");
 				break;
 			}
@@ -185,44 +185,61 @@ public class BankApp {
 			int currAmt = banks[i].getMoney();
 			System.out.println(banks[i].getAccName() + "님의 잔액은" + currAmt);
 			return;
+			}
 		}
-		}System.out.println("계좌가 없습니다."); //for문안에 있으면 계속 반복되니까 for문 밖으로 빼준다.
+		System.out.println("계좌가 없습니다."); //for문안에 있으면 계속 반복되니까 for문 밖으로 빼준다.
 			}
 	
 	//송금 매소드
 	public static void transperAmount() {
 		System.out.println("송금기능");
 		System.out.println("계좌번호 입력");
-		String ano4 = scn.next(); 
+		String ano = scn.next(); 
 		System.out.print("송금할 계좌번호 입력> ");
 		String ano5 = scn.next();
 		System.out.print("송금 금액 입력> ");
-		int checkCnt = 0;
-		Account findAccount = searchAccountNo(ano5);
-		if(findAccount != null) {
-			checkCnt = 1;
-		 else {checkCnt = 2;
+		int put = scn.nextInt();
+//	Account findAccount = searchAccountNo(ano5);
+		for(int i=0; i<banks.length; i++) {
+		if(banks[i] != null && banks[i].getAccNo().equals(ano5)){
+			int currAmt = banks[i].getMoney();
+			System.out.println("정상적으로 송금되었습니다.");
+			System.out.println(banks[i].getAccName() + "님의 잔액은" + (currAmt + put) + "입니다." );
+				return; //메뉴 선택구문으로 돌아간다.
 			}
 		}
-
-	
-		if(checkCnt == 1) {
-			int currAmt = findAccount.getMoney();
-			int put = scn.nextInt();
-			System.out.println("정상적으로 송금되었습니다.");
-			System.out.println("banks[i].getAccName()" + "님의 잔액은" + (currAmt + put));
-		}	else if(checkCnt == 2) {
-			System.out.println("계좌가 존재하지 않습니다.");}
-		
+		System.out.println("없는 계좌입니다.");
+	}
 //		for(int i=0; i<banks.length; i++) {
 //			if(banks[i] != null && banks[i].getAccNo().equals(ano4)) {
 //				checkCnt = 1;
 //				int currCnt = 
 				
-			
-		}
+		
+		
+		
+		
 	
+//	int checkCnt = 0;
+//	for (int i = 0; i < banks.length; i++) {
+//		if (banks[i] != null && banks[i].getAccNo().equals(ano2)) {
+//			checkCnt = 1;
+//			int currAmt = banks[i].getMoney();
 
+//			if (amt > currAmt) {
+//				checkCnt = 2;
+//			}
+//			banks[i].setMoney(currAmt + amt);
+//			break;}
+	
+	
+//	if(currAmt < amt) {
+//		checkCnt =1;
+//	}else {findAccount.setMoney(currAmt - amt);
+	
+	
+	
+	
 		
 //		 Account findAccount = searchAccountNo(ano);		
 //			if (findAccount != null){
