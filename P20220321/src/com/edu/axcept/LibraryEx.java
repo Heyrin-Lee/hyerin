@@ -4,7 +4,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibraryEx {
-	public static void main(String[] args) {
+	private static LibraryEx singleton = new LibraryEx(); 
+	private LibraryEx() {
+		
+	}
+	
+	public static LibraryEx getInstance() { 
+		return singleton;
+	}
+//	public static void main(String[] args) {	
+//	}
+	public void run() {
 		// 책제목, 저자, 가격 => 저장.
 		// 리스트 보여주기
 		Scanner scn = new Scanner(System.in);
@@ -18,7 +28,7 @@ public class LibraryEx {
 				showMessage("메뉴 선택: 1. 책 정보 입력, 2. 리스트 보기, 3. 종료"); // 오류가 나면 다시 메뉴를 보여줘야 하기 때문에 while문안에 넣었다.
 				menu = scn.nextInt(); //int 타입의 menu라는 변수를 설정해서 입력값을 받도록 한다.. 숫자를 입력하라고했는데 문자를 입력할 에러가 발생할 가능성이 있다.
 				break; //에러가 안 나면 반복문 멈춤
-			} catch (InputMismatchException e) {
+			} catch (InputMismatchException e) { // 이것도 클래스
 				System.out.println("숫자를 입력하세요.");
 				scn.next(); // a를 넣었다면 a의 값(사용자가 입력한 값)을 처리하여 다시 새로운 입력값을 넣도록 한다.
 			}
@@ -65,9 +75,11 @@ public class LibraryEx {
 			}
 		} // end of prog
 		showMessage("=== end of program ===");
+		
+		scn.close();
 	}
 	
-	public static void showMessage(String str) {
+	public void showMessage(String str) {
 		for (int i=0; i<str.length(); i++)
 		System.out.print(str.charAt(i));
 		try {
