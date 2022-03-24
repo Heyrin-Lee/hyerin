@@ -21,7 +21,7 @@ public class Exam04 {
 		int[] intAry = new int[5];
 		
 		for(int i=0; i<intAry.length; i++) {
-			(int) (Math.random()*6)+1; // 0<= x <1 의 수를 만들어준다. Math.random()*6을 해주면 0<=x<6 이라는 범위가 만들어진다.. (int)를 해주면 강제로 정수로 변환해준다.1~6까지의 임의의 수니까 6도 포함되게 +1
+		intAry[i] = (int) (Math.random()*6)+1; // 0<= x <1 의 수를 만들어준다. Math.random()*6을 해주면 0<=x<6 이라는 범위가 만들어진다.. (int)를 해주면 강제로 정수로 변환해준다.1~6까지의 임의의 수니까 6도 포함되게 +1
 		}
 		
 		int maxValue = intAry[0]; //제일 큰 값을 담기 위한 변수를 지정하는데, 첫번째 값이 제일 크다고 가정한다. 이거보다 큰 값이면 그걸로 바꿔주면 되니까
