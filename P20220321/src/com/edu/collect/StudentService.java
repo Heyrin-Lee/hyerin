@@ -10,4 +10,5 @@ public interface StudentService {
 	public void modifyStudent(Student student); // 한건수정
 	public void removeStudent(int sno); //한건 삭제.. 리턴값이 필요->void X
 	public List<Student> searchStudent(String name); // 이름으로 조회.. 같은 이름이 있을수도 있기 때문에 여러건으로 반환될 수 있다는 list를 사용
+	public void saveToFile();
 }

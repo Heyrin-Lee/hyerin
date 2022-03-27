@@ -74,10 +74,15 @@ public class StudentApp {
 			return searchList;
 		}
 
+		@Override
+		public void saveToFile() {
+			System.exit(0);
+		}
+
 	} // end of StudentServiceImpl
 
 	public void execute() { // StudentExe 클래스에서 호출하여 사용하기 위한 기능들을 이 곳에 작성한다
-		StudentService service = new StudentServiceImpl(); // StudentService는 인터페이스, StudentServiceimpl은 구현기능.. 왜
+		StudentService service = new StudentServiceFile(); // StudentService는 인터페이스, StudentServiceimpl은 구현기능.. 왜
 															// StudentService타입으로 정했는가..? list 이외에 다른 클래스에서도 기능을 생성할 때
 															// StudentSerivce에 저장한 파일을 사용할 수 있는데(저장공간이 리스트에서 파일로 바뀌는
 															// 것이다) 그 때 구현객체(~impl)만 변경해주면 된다
@@ -150,6 +155,7 @@ public class StudentApp {
 
 			} else if (menu == 9) {
 				System.out.println("프로그램을 종료합니다.");
+				service.saveToFile();
 				break;
 			}
 		} // end of while()
