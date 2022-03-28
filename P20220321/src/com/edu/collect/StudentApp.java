@@ -10,12 +10,15 @@ public class StudentApp {
 	Scanner scn = new Scanner(System.in);
 
 	// 생성자
-	public StudentApp() {
-		list.add(new Student(101, "권가희", 50, 60)); // StudentApp의 생성자를 만든 후, 리스트에 값을 넣어놓는다
-		list.add(new Student(102, "유해정", 60, 70));
-		list.add(new Student(103, "이유빈", 70, 80));
-		list.add(new Student(104, "권가희", 80, 60));
-	}
+		public StudentApp() {
+			
+		}
+//	public StudentApp() {
+//		list.add(new Student(101, "권가희", 50, 60)); // StudentApp의 생성자를 만든 후, 리스트에 값을 넣어놓는다
+//		list.add(new Student(102, "유해정", 60, 70));
+//		list.add(new Student(103, "이유빈", 70, 80));
+//		list.add(new Student(104, "권가희", 80, 60));
+//	}
 
 	// 멤버클래스
 	class StudentServiceImpl implements StudentService { // 클래스 안에 선언돼있는 클래스는 list에 자유롭게 접근가능하므로 중첩클래스를 사용하였다
@@ -80,10 +83,11 @@ public class StudentApp {
 		}
 
 	} // end of StudentServiceImpl
-
+	
+	// 메인기능을 담당하는 execute()
 	public void execute() { // StudentExe 클래스에서 호출하여 사용하기 위한 기능들을 이 곳에 작성한다
-		StudentService service = new StudentServiceFile(); // StudentService는 인터페이스, StudentServiceimpl은 구현기능.. 왜
-															// StudentService타입으로 정했는가..? list 이외에 다른 클래스에서도 기능을 생성할 때
+		StudentService  service = new StudentServiceFile();	// StudentService는 인터페이스, StudentServiceimpl은 구현기능.. 왜
+		    												// StudentService타입으로 정했는가..? list 이외에 다른 클래스에서도 기능을 생성할 때
 															// StudentSerivce에 저장한 파일을 사용할 수 있는데(저장공간이 리스트에서 파일로 바뀌는
 															// 것이다) 그 때 구현객체(~impl)만 변경해주면 된다
 		// 메뉴: 1.추가 2.리스트 3.한건조회 4.수정 9.종료

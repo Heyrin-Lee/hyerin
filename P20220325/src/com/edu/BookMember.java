@@ -26,6 +26,8 @@ public class BookMember extends Member {
 	public String toString() {
 		String book = "회원번호: " + super.getMemberId() + ", 회원 이름: " + super.getMemberName() + ", 연락처: " + super.getPhone() //
 						+ ", 반장이름: " + this.getBanjang() + ", 강의실: " + this.getRoom();
+// 		String book = super.toString(); // 부모클래스(Member) id, name, phone을 book이라눈 변수에 담아주고
+// 		book += "\n반장이름: " banjang + ", 강의실: " + room; // BookMember만의 추가정보
 		return book;
 	}
 	
