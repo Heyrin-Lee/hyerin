@@ -86,10 +86,12 @@ public class StudentApp {
 	
 	// 메인기능을 담당하는 execute()
 	public void execute() { // StudentExe 클래스에서 호출하여 사용하기 위한 기능들을 이 곳에 작성한다
-		StudentService  service = new StudentServiceFile();	// StudentService는 인터페이스, StudentServiceimpl은 구현기능.. 왜
-		    												// StudentService타입으로 정했는가..? list 이외에 다른 클래스에서도 기능을 생성할 때
-															// StudentSerivce에 저장한 파일을 사용할 수 있는데(저장공간이 리스트에서 파일로 바뀌는
-															// 것이다) 그 때 구현객체(~impl)만 변경해주면 된다
+		StudentService  service = null; 
+//						new StudentServiceImpl();	
+//						new StudentServiceFile();												// StudentService는 인터페이스, StudentServiceimpl은 구현기능.. 왜
+						service = new StudentServiceOracle();									// StudentService타입으로 정했는가..? list 이외에 다른 클래스에서도 기능을 생성할 때
+																								// StudentSerivce에 저장한 파일을 사용할 수 있는데(저장공간이 리스트에서 파일로 바뀌는
+																								// 것이다) 그 때 구현객체(~impl)만 변경해주면 된다
 		// 메뉴: 1.추가 2.리스트 3.한건조회 4.수정 9.종료
 		// 기능들을 저장할 공간 컬렉션 생성 필요
 		while (true) {
@@ -107,7 +109,8 @@ public class StudentApp {
 				int engScore = scn.nextInt();
 				System.out.println("국어점수 입력>> ");
 				int korScore = scn.nextInt();
-
+				
+				
 				Student s1 = new Student(stuNo, name, engScore, korScore); // 인스턴스 생성
 				service.insertStudent(s1);
 			} else if (menu == 2) {
@@ -140,14 +143,19 @@ public class StudentApp {
 			} else if (menu == 5) {
 				System.out.println("삭제할 학생번호 입력>> ");
 				int stuNo = scn.nextInt();
-				for (int i = 0; i < list.size(); i++) {
-					if (list.get(i).getNumber() == stuNo) {
-						service.removeStudent(stuNo);
-						System.out.println("삭제가 완료되었습니다.");
-					} else {
-
-					}
-				}
+				
+				Student stu = new Student();
+				service.removeStudent(stuNo);
+				System.out.println("삭제되었습니다.");
+				
+//				for (int i = 0; i < list.size(); i++) {
+//					if (list.get(i).getNumber() == stuNo) {
+//						service.removeStudent(stuNo);
+//						System.out.println("삭제가 완료되었습니다.");
+//					} else {
+//
+//					}
+//				} StudentServiceOracle과 연결하였을 때 삭제기능은 반복문을 설정할 필요가 없다-> 입력하는 학생번호의 정보를 삭제하는 것에서 끝나기 때문(반복문 쓸 필요없음)
 
 			} else if (menu == 6) {
 				System.out.println("조회할 학생이름 입력>> ");

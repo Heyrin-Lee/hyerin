@@ -1,4 +1,4 @@
-package com.prod.emp;
+package com.edu.collect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,9 +11,9 @@ import java.sql.Statement;
 public class DAO {
 	
 	// DriverManager
-	 Connection conn; //자바에서 제공해주는 클래스,,인터페이스,,
-	 Statement stmt;  //안에 executeQuery, executeupdate 등이 들어있는데 이 매소드들을 사용하려고
-	 ResultSet rs; 	 //conn, stmt 등 변수를 선언해서 필요할 때 매소드를 호출하여 사용한다
+	 Connection conn;
+	 Statement stmt;
+	 ResultSet rs;
 	 PreparedStatement psmt; 
 	
 	public Connection getConnect() { //연결 매소드
