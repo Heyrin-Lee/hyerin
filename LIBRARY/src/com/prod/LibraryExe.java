@@ -17,6 +17,19 @@ public class LibraryExe {
 				
 			} else if(menu == 2) {
 				System.out.println("도서등록번호 입력>> ");
+				int number = scn.nextInt();
+				System.out.println("책 이름 입력>> ");
+				String title = scn.next();
+				System.out.println("지은이 입력>> ");
+				String author = scn.next();
+				System.out.println("출판사 입력>> ");
+				String publish = scn.next();
+				System.out.println("책 위치 입력>> ");
+				String place = scn.next();
+				System.out.println("도서대여가능여부 입력>> ");
+				String rental = scn.next();
+				
+				
 				
 			} else if(menu == 3) {
 				
