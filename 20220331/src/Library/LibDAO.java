@@ -7,11 +7,56 @@ import java.util.List;
 public class LibDAO extends DAO {
 
 	// 로그인
-
+	public Login loginin (int adminNo, int adminPw) {
+		conn = getConnect();
+		Login log = null;
+		String sql = "select *  from login_admin where admin_id = ? and admin_pw = ? ";
+		//관리자 로그인
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, adminNo);
+			psmt.setInt(2, adminPw);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				log = new Login();
+				log.setAdminNumber(rs.getInt("admin_id"));
+				log.setAdmingPassword(rs.getInt("admin_pw"));
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+		return log;
+		}
+	// 회원 로그인
+	public Login loginin2 (int memberNo, int memberPw) {
+		conn = getConnect();
+		Login log = null;
+		String sql = "select *  from login_member where member_id = ? and 1"
+				+ "member_pw = ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, memberNo);
+			psmt.setInt(2, memberPw);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				log = new Login();
+				log.setAdminNumber(rs.getInt("member_id"));
+				log.setAdmingPassword(rs.getInt("member_pw"));
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+		return log;
+		}
 	// 도서등록
 	public void insertBook(Book book) {
 		conn = getConnect();
-		String sql = "";
+		String sql = "insert into book_info (book_no, book_title, book_author, book_publish, book_place, book_rental)\r\n"
+				+ "values(?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, book.getBookNumber());
@@ -33,7 +78,10 @@ public class LibDAO extends DAO {
 	// 도서정보수정
 	public void updateBook(Book book) {
 		conn = getConnect();
-		String sql = "";
+		String sql = "update book_info\r\n"
+				+ "set book_place = ?,\r\n"
+				+ "     book_rental = ?\r\n"
+				+ "where book_no = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, book.getBookPlace());
@@ -51,7 +99,8 @@ public class LibDAO extends DAO {
 	// 도서삭제
 	public void deleteBook(int bookNumber) {
 		conn = getConnect();
-		String sql = "";
+		String sql = "delete from book_info\r\n"
+				+ "where book_no = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, bookNumber);
@@ -68,12 +117,13 @@ public class LibDAO extends DAO {
 	public List<Book> bookList() {
 		List<Book> books = new ArrayList<Book>();
 		conn = getConnect();
+		String sql = "select * from book_info order by book_no";
 		try {
-			psmt = conn.prepareStatement("");
+			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				Book book = new Book();
-				book.setBookNumber(rs.getInt("book_number"));
+				book.setBookNumber(rs.getInt("book_no"));
 				book.setBookTitle(rs.getString("book_title"));
 				book.setBookAuthor(rs.getString("book_author"));
 				book.setBookPublish(rs.getString("book_publish"));
@@ -89,7 +139,7 @@ public class LibDAO extends DAO {
 		}
 		return books;
 		// 도서대여
-
+		
 		// 회원의 대여도서 목록 조회
 
 		// 종료
