@@ -139,7 +139,9 @@ public class LibDAO extends DAO {
 		}
 		return books;
 		// 도서대여
-		
+		public Book rentBook () {
+			
+		}
 		// 회원의 대여도서 목록 조회
 
 		// 종료
