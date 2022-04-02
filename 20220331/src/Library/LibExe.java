@@ -90,7 +90,8 @@ public static void main(String[] args) {
 			for(Book bookls : books) {
 				System.out.println(bookls.toString());
 			}
-		}else if(menu == 6) {
+		}else if(menu == 6) { //도서대여
+			
 			
 		}else if(menu == 7) {
 			
