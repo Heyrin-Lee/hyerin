@@ -33,8 +33,7 @@ public class LibDAO extends DAO {
 	public Login loginin2 (int memberNo, int memberPw) {
 		conn = getConnect();
 		Login log = null;
-		String sql = "select *  from login_member where member_id = ? and 1"
-				+ "member_pw = ? ";
+		String sql = "select *  from login_member where member_id = ? and member_pw = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, memberNo);
@@ -139,8 +138,13 @@ public class LibDAO extends DAO {
 		}
 		return books;
 		// 도서대여
-		public Book rentBook () {
-			
+		public int rentBook () {
+			conn = getConnect();
+			int result = 0;
+			String sql = " ";
+			try {
+				psmt = conn.prepareStatement(sql);
+			}
 		}
 		// 회원의 대여도서 목록 조회
 
