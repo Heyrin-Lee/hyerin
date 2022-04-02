@@ -13,6 +13,19 @@ public class Book {
 	public Book() {
 		
 	}
+	
+
+	public Book(int bookNumber, String bookTitle, String bookAuthor, String bookPublish, String bookPlace,
+			String bookRental) {
+		super();
+		this.bookNumber = bookNumber;
+		this.bookTitle = bookTitle;
+		this.bookAuthor = bookAuthor;
+		this.bookPublish = bookPublish;
+		this.bookPlace = bookPlace;
+		this.bookRental = bookRental;
+	}
+
 
 	public int getBookNumber() {
 		return bookNumber;
