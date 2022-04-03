@@ -140,6 +140,7 @@ public class LibDAO extends DAO {
 		// 도서대여
 		public int rentBook () {
 			conn = getConnect();
+			
 			int result = 0;
 			String sql = " ";
 			try {
