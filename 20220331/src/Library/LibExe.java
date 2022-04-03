@@ -9,7 +9,7 @@ public static void main(String[] args) {
 	Scanner scn = new Scanner(System.in);
 	
 	while(true) {
-		System.out.println("메뉴: 1.로그인 2.도서등록 3.도서정보수정 4.도서삭제, 5.도서목록족회 6.도서대여 7.회원의 대여도서 목록조회 9.종료");
+		System.out.println("메뉴: 1.로그인 2.도서등록 3.도서정보수정 4.도서삭제 5.도서목록조회 6.저자의 도서목록 검색 0.종료");
 		System.out.println("메뉴 선택>> ");
 		int menu = scn.nextInt();
 		
@@ -22,6 +22,7 @@ public static void main(String[] args) {
 					System.out.println("관리자 비밀번호 입력>> ");
 					int adminPw = scn.nextInt();
 					Login l = dao.loginin(adminNo, adminPw);
+					System.out.println("관리자 로그인 성공");
 					if(l == null) {
 						System.out.println("관리자 로그인 실패");
 					} else {
@@ -34,6 +35,7 @@ public static void main(String[] args) {
 					System.out.println("회원 비밀번호 입력>>" );
 					int memberPw = scn.nextInt();
 					Login l = dao.loginin2(memberNo, memberPw);
+					System.out.println("회원 로그인 성공");
 					if(l == null) {
 						System.out.println("회원 로그인 실패");
 					} else {
@@ -52,26 +54,21 @@ public static void main(String[] args) {
 			String bookPublish = scn.next();
 			System.out.println("책 위치 입력>> ");
 			String bookPlace = scn.next();
-			System.out.println("도서대여가능여부 입력>> ");
-			String bookRental = scn.next();
 			
-			Book books = new Book (bookNo, bookTitle, bookAuthor, bookPublish, bookPlace, bookRental);
+			Book books = new Book (bookNo, bookTitle, bookAuthor, bookPublish, bookPlace);
 			dao.insertBook(books);
-			System.out.println("도서번호: " + books.getBookNumber() + "책 이름: " + books.getBookTitle() + "지은이: " + books.getBookAuthor() + "출판사: " + books.getBookTitle() + "책 위치: " + books.getBookPlace() + "도서대여가능여부: " + books.getBookRental());
+			System.out.println("도서번호: " + books.getBookNumber() + "책 이름: " + books.getBookTitle() + "지은이: " + books.getBookAuthor() + "출판사: " + books.getBookTitle() + "책 위치: " + books.getBookPlace());
 			
 		}else if(menu == 3) { //도서정보수정
 			System.out.println("도서번호 입력>>");
 			int bookNo = scn.nextInt();
 			System.out.println("수정할 책 위치 입력>> ");
 			String bookPlace = scn.next();
-			System.out.println("도서대여가능여부 수정>> ");
-			String bookRental = scn.next();
 			
 			Book books = new Book();
 			
 			books.setBookNumber(bookNo);
 			books.setBookPlace(bookPlace);
-			books.setBookRental(bookRental);
 			
 			dao.updateBook(books);
 			System.out.println("수정되었습니다.");
@@ -90,12 +87,9 @@ public static void main(String[] args) {
 			for(Book bookls : books) {
 				System.out.println(bookls.toString());
 			}
-		}else if(menu == 6) { //도서대여
+		}else if(menu == 6) { // 저자의 도서목록 검색
 			
-			
-		}else if(menu == 7) {
-			
-		}else if(menu == 9) {
+		}else if(menu == 0) { //프로그램 종료
 			System.out.println("프로그램을 종료합니다.");
 		}
  	}

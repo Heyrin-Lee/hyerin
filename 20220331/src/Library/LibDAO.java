@@ -54,8 +54,8 @@ public class LibDAO extends DAO {
 	// 도서등록
 	public void insertBook(Book book) {
 		conn = getConnect();
-		String sql = "insert into book_info (book_no, book_title, book_author, book_publish, book_place, book_rental)\r\n"
-				+ "values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into book_info (book_no, book_title, book_author, book_publish, book_place)\r\n"
+				+ "values(?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, book.getBookNumber());
@@ -63,7 +63,6 @@ public class LibDAO extends DAO {
 			psmt.setString(3, book.getBookAuthor());
 			psmt.setString(4, book.getBookPublish());
 			psmt.setString(5, book.getBookPlace());
-			psmt.setString(6, book.getBookRental());
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 입력되었습니다.");
 		} catch (SQLException e) {
@@ -79,12 +78,10 @@ public class LibDAO extends DAO {
 		conn = getConnect();
 		String sql = "update book_info\r\n"
 				+ "set book_place = ?,\r\n"
-				+ "     book_rental = ?\r\n"
 				+ "where book_no = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, book.getBookPlace());
-			psmt.setString(2, book.getBookRental());
 			psmt.setInt(3, book.getBookNumber());
 			int r = psmt.executeUpdate();
 			System.out.println(r + "건 수정되었습니다.");
@@ -127,8 +124,6 @@ public class LibDAO extends DAO {
 				book.setBookAuthor(rs.getString("book_author"));
 				book.setBookPublish(rs.getString("book_publish"));
 				book.setBookPlace(rs.getString("book_place"));
-				book.setBookRental(rs.getString("book_rental"));
-
 				books.add(book);
 			}
 		} catch (SQLException e) {
@@ -137,17 +132,34 @@ public class LibDAO extends DAO {
 			disconnect();
 		}
 		return books;
-		// 도서대여
-		public int rentBook () {
+		
+		//저자의 도서목록 검색
+		public List<Book> authorList(String author) {
+			List<Book> authors = new ArrayList<Book>();
 			conn = getConnect();
-			
-			int result = 0;
-			String sql = " ";
 			try {
+				String sql = "select * from book_info \r\n"
+						+ "where book_author\r\n"
+						+ "like ?";
 				psmt = conn.prepareStatement(sql);
+				rs = psmt.executeQuery();
+				while (rs.next()) {
+					Book write = new Book();
+					write.setBookNumber(rs.getInt("book_no"));
+					write.setBookTitle(rs.getString("book_title"));
+					write.setBookAuthor(rs.getString("book_author"));
+					write.setBookPublish(rs.getString("book_publish"));
+					write.setBookPlace(rs.getString("book_place"));
+					
+					authors.add(write);
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
 			}
+			return authors;
 		}
-		// 회원의 대여도서 목록 조회
 
 		// 종료
 	}
