@@ -9,7 +9,7 @@ public static void main(String[] args) {
 	Scanner scn = new Scanner(System.in);
 	
 	while(true) {
-		System.out.println("메뉴: 1.로그인 2.도서등록 3.도서정보수정 4.도서삭제 5.도서목록조회 6.저자의 도서목록 검색 0.종료");
+		System.out.println("메뉴: 1.로그인 2.도서등록 3.도서정보수정 4.도서삭제 5.도서대여 6.도서목록조회 0.종료");
 		System.out.println("메뉴 선택>> ");
 		int menu = scn.nextInt();
 		
@@ -43,7 +43,7 @@ public static void main(String[] args) {
 						dao.loginin2(memberNo, memberPw);
 					}
 				}
-		}else if(menu == 2) { //도서정보입력
+		}else if(menu == 2) { //도서등록
 			System.out.println("도서번호 입력>> ");
 			int bookNo = scn.nextInt();
 			System.out.println("책 이름 입력>> ");
@@ -54,10 +54,12 @@ public static void main(String[] args) {
 			String bookPublish = scn.next();
 			System.out.println("책 위치 입력>> ");
 			String bookPlace = scn.next();
-			
-			Book books = new Book (bookNo, bookTitle, bookAuthor, bookPublish, bookPlace);
+			System.out.println("도서대여가능여부 입력>> ");
+			String bookBorrow = scn.next();
+		
+			Book books = new Book (bookNo, bookTitle, bookAuthor, bookPublish, bookPlace, bookBorrow);
 			dao.insertBook(books);
-			System.out.println("도서번호: " + books.getBookNumber() + "책 이름: " + books.getBookTitle() + "지은이: " + books.getBookAuthor() + "출판사: " + books.getBookTitle() + "책 위치: " + books.getBookPlace());
+			System.out.println("도서번호: " + books.getBookNumber() + "책 이름: " + books.getBookTitle() + "지은이: " + books.getBookAuthor() + "출판사: " + books.getBookTitle() + "책 위치: " + books.getBookPlace() + "도서대여가능여부: " + books.getBookBorrow());
 			
 		}else if(menu == 3) { //도서정보수정
 			System.out.println("도서번호 입력>>");
@@ -73,7 +75,7 @@ public static void main(String[] args) {
 			dao.updateBook(books);
 			System.out.println("수정되었습니다.");
 			
-		}else if(menu == 4) {
+		}else if(menu == 4) { //도서 삭제
 			System.out.println("삭제할 도서번호 입력>> ");
 			int bookNo = scn.nextInt();
 			
@@ -81,16 +83,24 @@ public static void main(String[] args) {
 			dao.deleteBook(bookNo);
 			System.out.println("삭제되었습니다.");
 			
-		}else if(menu == 5) {
+		}else if(menu == 5) { //도서 대여
 			List<Book> books = dao.bookList();
-			System.out.println("도서목록");
-			for(Book bookls : books) {
-				System.out.println(bookls.toString());
+			System.out.println("대여할 도서번호 입력>> ");
+			int bookNo = scn.nextInt();
+			
+			System.out.println("대여 완료!");
+		
+		}else if(menu == 6) { //도서목록조회
+			List<Book> books = dao.bookList();
+			for(Book bs : books) {
+				System.out.println(bs.toString());
 			}
-		}else if(menu == 6) { // 저자의 도서목록 검색
 			
 		}else if(menu == 0) { //프로그램 종료
 			System.out.println("프로그램을 종료합니다.");
+			break;
+		} else {
+			System.out.println("잘못된 메뉴를 선택했습니다.");
 		}
  	}
 }

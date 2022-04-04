@@ -7,20 +7,24 @@ public class Book {
 	private String bookAuthor;
 	private String bookPublish;
 	private String bookPlace;
+	private String bookBorrow;
 	//생성자
 	public Book() {
 		
 	}
 	
-
-	public Book(int bookNumber, String bookTitle, String bookAuthor, String bookPublish, String bookPlace) {
+	public Book(int bookNumber, String bookTitle, String bookAuthor, String bookPublish, String bookPlace,
+			String bookBorrow) {
 		super();
 		this.bookNumber = bookNumber;
 		this.bookTitle = bookTitle;
 		this.bookAuthor = bookAuthor;
 		this.bookPublish = bookPublish;
 		this.bookPlace = bookPlace;
+		this.bookBorrow = bookBorrow;
 	}
+
+
 
 
 	public int getBookNumber() {
@@ -63,11 +67,21 @@ public class Book {
 		this.bookPlace = bookPlace;
 	}
 	
+	public String getBookBorrow() {
+		return bookBorrow;
+	}
+
+	public void setBookBorrow(String bookBorrow) {
+		this.bookBorrow = bookBorrow;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [도서번호=" + bookNumber + ", 책 제목=" + bookTitle + ", 지은이=" + bookAuthor
-				+ ", 출판사=" + bookPublish + ", 책 위치=" + bookPlace + "]";
+		return "Book [bookNumber=" + bookNumber + ", bookTitle=" + bookTitle + ", bookAuthor=" + bookAuthor
+				+ ", bookPublish=" + bookPublish + ", bookPlace=" + bookPlace + ", bookBorrow=" + bookBorrow + "]";
 	}
+
+	
 	
 	
 }
