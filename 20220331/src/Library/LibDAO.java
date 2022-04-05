@@ -34,7 +34,7 @@ public class LibDAO extends DAO {
 	public Login loginin2(int memberNo, int memberPw) {
 		conn = getConnect();
 		Login log = null;
-		String sql = "select *  from login_member where member_id = ? and 1" + "member_pw = ? ";
+		String sql = "select *  from login_member where member_id = ? and " + "member_pw = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, memberNo);
@@ -138,27 +138,44 @@ public class LibDAO extends DAO {
 		return books;
 	}
 		// 도서대여
-	public Book borrow(Book bookno) {
+	public boolean borrow(int bookno) {
 		conn = getConnect();
-		String sql = "update book_info set borrow = 'n'\r\n" + "where  book_no = ?;";
+		
+		String sql = "update book_info set book_borrow = 'n'\r\n" + "where book_no = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, bookno.getBookNumber());
+			psmt.setInt(1, bookno);
 			int r = psmt.executeUpdate();
-			System.out.println(r + "건 대여되었습니다.");
-			
+			if(r == 1) {
+			return true;
+			} else if(r == 0) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return false;
+	}
+	//도서반납
+	public void turn(int booknom) {
+		conn = getConnect();
+		
+		String sql = "update book_info set book_borrow = 'y'\r\n" + "where book_no = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, booknom);
+			psmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
-		return bookno;
 	}
-
 	// 종료
 	
-		} // end of class
+}
 
-	
 

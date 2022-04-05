@@ -77,8 +77,8 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [bookNumber=" + bookNumber + ", bookTitle=" + bookTitle + ", bookAuthor=" + bookAuthor
-				+ ", bookPublish=" + bookPublish + ", bookPlace=" + bookPlace + ", bookBorrow=" + bookBorrow + "]";
+		return "Book [도서번호=" + bookNumber + ", 책 제목=" + bookTitle + ", 지은이=" + bookAuthor
+				+ ", 출판사=" + bookPublish + ", 도서 위치=" + bookPlace + ", 도서대여가능여부=" + bookBorrow + "]";
 	}
 
 	
