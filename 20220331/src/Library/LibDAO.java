@@ -126,7 +126,8 @@ public class LibDAO extends DAO {
 				book.setBookAuthor(rs.getString("book_author"));
 				book.setBookPublish(rs.getString("book_publish"));
 				book.setBookPlace(rs.getString("book_place"));
-				book.setBookBorrow(rs.getString("book_borrow"));;
+				book.setBookBorrow(rs.getString("book_borrow"));
+				;
 
 				books.add(book);
 			}
@@ -137,18 +138,19 @@ public class LibDAO extends DAO {
 		}
 		return books;
 	}
-		// 도서대여
+
+	// 도서대여
 	public boolean borrow(int bookno) {
 		conn = getConnect();
-		
+
 		String sql = "update book_info set book_borrow = 'n'\r\n" + "where book_no = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, bookno);
 			int r = psmt.executeUpdate();
-			if(r == 1) {
-			return true;
-			} else if(r == 0) {
+			if (r == 1) {
+				return true;
+			} else if (r == 0) {
 				return false;
 			}
 		} catch (SQLException e) {
@@ -158,16 +160,42 @@ public class LibDAO extends DAO {
 		}
 		return false;
 	}
-	//도서반납
+
+	// 도서대여가능여부 확인
+	//boolean타입으로 리턴값을 받으면 값이 있을 경우 무조건 true로 반환-> "y","n"을 구분해서 출력메시지를 다르게 해야하기 때문에 적절하지 않음
+	//셀을 데이터로 받아와서 "n","y"을 구분하도록 하기 위해서 class 타입으로 리턴값을 받아오도록 설정하였다
+	public Book check(int booknum) {
+		conn = getConnect();
+		Book book1 = null;
+		String sql = "select book_no, book_borrow\r\n" + "from book_info\r\n" + "where book_no = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, booknum);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				book1 = new Book();
+				book1.setBookNumber(rs.getInt("book_no"));
+				book1.setBookBorrow(rs.getString("book_borrow"));
+				return book1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return book1;
+	}
+
+	// 도서반납
 	public void turn(int booknom) {
 		conn = getConnect();
-		
+
 		String sql = "update book_info set book_borrow = 'y'\r\n" + "where book_no = ?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, booknom);
 			psmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -175,7 +203,5 @@ public class LibDAO extends DAO {
 		}
 	}
 	// 종료
-	
+
 }
-
-

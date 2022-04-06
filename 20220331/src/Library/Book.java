@@ -25,7 +25,12 @@ public class Book {
 	}
 
 
-
+	public Book(int bookNumber, String bookBorrow) {
+		super();
+		this.bookNumber = bookNumber;
+		this.bookBorrow = bookBorrow;
+	}
+	
 
 	public int getBookNumber() {
 		return bookNumber;
