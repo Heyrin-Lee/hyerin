@@ -12,8 +12,8 @@ public class LibExee {
 			System.out.println("메뉴 선택>> ");
 			int menu = scn.nextInt();
 			// 관리자 아이디,비밀번호는 int타입
-			// 관리자 아이디: 701, 403
-			// 관리자 비밀번호: 1711, 1413
+			// 관리자 아이디: 11
+			// 관리자 비밀번호: 1111
 			if (menu == 1) {
 				System.out.println("관리자 아이디 입력>> ");
 				int adminNo = scn.nextInt();
@@ -88,8 +88,8 @@ public class LibExee {
 				}
 			} else if (menu == 2) {
 				// 회원 아이디,비밀번호는 int타입
-				// 회원 아이디: 506, 708
-				// 회원 비밀번호: 1516, 1718
+				// 회원 아이디: 22
+				// 회원 비밀번호: 2222
 				System.out.println("회원 아이디 입력>> ");
 				int memberNo = scn.nextInt();
 				System.out.println("회원 비밀번호 입력>>");
@@ -133,11 +133,21 @@ public class LibExee {
 								for (Book bs : books) {
 									System.out.println(bs.toString());
 								}
+								
 								System.out.println("반납할 도서번호 입력>> ");
 								int bookNo = scn.nextInt();
-
-								dao.turn(bookNo);
-								System.out.println("반납 완료되었습니다.");
+								Book check2 = dao.check(bookNo);
+								if(check2 == null) {
+									System.out.println("없는 도서번호입니다.");
+								} else {
+									if(check2.getBookBorrow().equals("n")) {
+										dao.borrow(bookNo);
+										System.out.println("반납 완료되었습니다.");
+									} else if(check2.getBookBorrow().equals("y")) {
+										System.out.println("대여중인 도서가 아닙니다.");
+									}
+								}
+								
 							} else if (choice2 == 3) { // 도서목록조회
 								List<Book> books = dao.bookList();
 								for (Book bs : books) {
