@@ -62,8 +62,7 @@ public class Login {
 
 	@Override
 	public String toString() {
-		return "Login [adminNumber=" + adminNumber + ", admingPassword=" + admingPassword + ", memberNumber="
-				+ memberNumber + ", memberPassword=" + memberPassword + "]";
+		return "[memberNumber="+ memberNumber + ", memberPassword=" + memberPassword + "]";
 	}
 
 	

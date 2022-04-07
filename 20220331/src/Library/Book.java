@@ -23,6 +23,7 @@ public class Book {
 		this.bookPlace = bookPlace;
 		this.bookBorrow = bookBorrow;
 	}
+	
 
 
 	public Book(int bookNumber, String bookBorrow) {
@@ -86,7 +87,9 @@ public class Book {
 				+ ", 출판사=" + bookPublish + ", 도서 위치=" + bookPlace + ", 도서대여가능여부=" + bookBorrow + "]";
 	}
 
-	
+	public String toString2() {
+		return  "도서 위치=" + bookPlace + ", 도서대여가능여부=" + bookBorrow ;
+	}
 	
 	
 }
