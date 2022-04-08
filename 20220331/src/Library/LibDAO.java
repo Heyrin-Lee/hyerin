@@ -7,15 +7,14 @@ import java.util.List;
 public class LibDAO extends DAO {
 
 	// 회원가입
-	public void joinin(Join joinNo, Join joinPw) {
+	public void joinin(int joinNo, int joinPw) {
 		conn = getConnect();
-		String sql = "insert into joinin\r\n" + "values(?, ?)";
+		String sql = "insert into login_member\r\n" + "values(?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, joinNo.getJoinNumber());
-			psmt.setInt(2, joinPw.getJoinPassword());
-			int r = psmt.executeUpdate();
-			System.out.println(r + "건 회원가입되었습니다.");
+			psmt.setInt(1, joinNo);
+			psmt.setInt(2, joinPw);
+			psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -161,14 +160,14 @@ public class LibDAO extends DAO {
 	public List<Login> memList() {
 		List<Login> members = new ArrayList<Login>();
 			conn = getConnect();
-			String sql = "select *\r\n"+ "from joinin";
+			String sql = "select *\r\n"+ "from login_member";
 			try {
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();
 				while (rs.next()) {
 					Login mem = new Login();
-					mem.setMemberNumber(rs.getInt("join_id"));
-					mem.setMemberPassword(rs.getInt("join_pw"));
+					mem.setMemberNumber(rs.getInt("member_id"));
+					mem.setMemberPassword(rs.getInt("member_pw"));
 					
 					members.add(mem);
 				}
@@ -185,12 +184,14 @@ public class LibDAO extends DAO {
 		List<Book> titles = new ArrayList<Book>();
 		conn = getConnect();
 		try {
-			String sql = "select book_place, book_borrow\r\n" + "from book_info\r\n" + "where book_title = ?";
+			String sql = "select book_no, book_title, book_place, book_borrow\r\n"+ "from book_info\r\n"+ "where book_title = ?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, title);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				Book tt = new Book();
+				tt.setBookNumber(rs.getInt("book_no"));
+				tt.setBookTitle(rs.getString("book_title"));
 				tt.setBookPlace(rs.getString("book_place"));
 				tt.setBookBorrow(rs.getString("book_borrow"));
 
@@ -256,13 +257,15 @@ public class LibDAO extends DAO {
 	public List<Book> bookList2() {
 		List<Book> renting = new ArrayList<Book>();
 		conn = getConnect();
-		String sql = "select *\r\n" + "from book_info\r\n" + "where book_borrow = 'n'";
+		String sql = "select book_no, book_title, book_borrow\r\n"+ "from book_info\r\n"+ "where book_borrow = 'n'";
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				Book rent = new Book();
 				rent.setBookBorrow(rs.getString("book_borrow"));
+				rent.setBookNumber(rs.getInt("book_no"));
+				rent.setBookTitle(rs.getString("book_title"));
 
 				renting.add(rent);
 			}

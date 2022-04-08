@@ -20,8 +20,8 @@ public class LibExee {
 				System.out.println("가입할 회원 비밀번호 입력(숫자만 입력하세요)>> ");
 				int joinPw = scn.nextInt();
 
-				Join joinin = new Join(joinNo, joinPw);
-				dao.joinin(joinin, joinin);
+				dao.joinin(joinNo, joinPw);
+				
 				System.out.println("가입을 환영합니다!");
 			} else if (menu == 2) {
 				System.out.println("관리자 아이디 입력>> ");
@@ -156,7 +156,7 @@ public class LibExee {
 								// 대여중인 도서목록 먼저보기
 								List<Book> renting = dao.bookList2();
 								for (Book rt : renting) {
-									System.out.println(rt.toString());
+									System.out.println(rt.toString3());
 								}
 
 								System.out.println("반납할 도서번호 입력>> ");

@@ -88,8 +88,10 @@ public class Book {
 	}
 
 	public String toString2() {
-		return  "도서 위치=" + bookPlace + ", 도서대여가능여부=" + bookBorrow ;
+		return  "도서번호= " + bookNumber + ", 책 제목= "+ bookTitle + ", 도서 위치=" + bookPlace + ", 도서대여가능여부=" + bookBorrow ;
 	}
 	
-	
+	public String toString3() {
+		return "도서번호= " + bookNumber + ", 책 제목= " + bookTitle + ", 도서대여가능여부= " + bookBorrow;
+	}
 }
