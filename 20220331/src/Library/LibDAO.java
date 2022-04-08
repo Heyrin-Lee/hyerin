@@ -161,14 +161,14 @@ public class LibDAO extends DAO {
 	public List<Login> memList() {
 		List<Login> members = new ArrayList<Login>();
 			conn = getConnect();
-			String sql = "select *\r\n"+ "from login_member";
+			String sql = "select *\r\n"+ "from joinin";
 			try {
 				psmt = conn.prepareStatement(sql);
 				rs = psmt.executeQuery();
 				while (rs.next()) {
 					Login mem = new Login();
-					mem.setMemberNumber(rs.getInt("member_id"));
-					mem.setMemberPassword(rs.getInt("member_pw"));
+					mem.setMemberNumber(rs.getInt("join_id"));
+					mem.setMemberPassword(rs.getInt("join_pw"));
 					
 					members.add(mem);
 				}

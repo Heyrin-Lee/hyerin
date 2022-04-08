@@ -102,9 +102,11 @@ public class LibExee {
 								for (Login ms : members) {
 									System.out.println(ms.toString());
 								}
-							}else if (choice == 0) {
+							} else if (choice == 0) {
 								System.out.println("프로그램을 종료합니다.");
 								break;
+							} else {
+								System.out.println("잘못된 번호를 선택했습니다.");
 							}
 						}
 					}
