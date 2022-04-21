@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인페이지입니다</title>
+</head>
+<body>
+	<h3>반갑습니다!</h3>
+	<a href="info/myInfo.html">내 정보 보기</a>
+	<h3>내가 좋아하는 과일</h3>
+		<ul>
+			<li>수박</li>
+			<li>복숭아</li>
+			<li>망고</li>
+		</ul>
+		<script>
+			// 변수 선언 var 사용 // 복수일 경우에는 변수 이름에 s 붙이기
+			var h3s = document.getElementsByTagName('h3');
+			h3s[0].innerText = 'Welcome!'
+			// querySelector은 선택자이다. ul태그 밑에 있는 li태그를 선택한다
+			var li = document.querySelector('ul>li');
+			li.style.background = 'yellow';
+
+			// 선택자를 지정할 때 n번째 자식 태그로 지정한다
+			var li2 = document.querySelector('ul>li:nth-child(1)');
+			// event! onclick이 발생하면,,
+			li2.onclick = function() {
+				alert('리스트 태그를 클릭했습니다');
+			}
+
+			console.log(h3s[0]);
+		</script>
+</body>
+</html>
