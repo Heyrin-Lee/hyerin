@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax/post.html</title>
+</head>
+<body>
+<!-- html 주석--> <!--/*css 주석*/-->
+	<div id="addFrm"> 
+	<!--서식 데이터(form data)를 서버로 보낼 때 해당 데이터가 도착할 URL을 적어준다-->
+	<!--addStudentServlet페이지에 요청은 하지만 그 페이지로 이동은 하지 않고 post.html페이지에 머물러서 데이터 처리를 하고, 추가된 데이터가 있다면 테이블에 보이도록 한다-->
+	<!--on~: 이벤트와 관련된 속성, event를 매개값으로 받고 submit하면 addStudent()함수를 실행시킨다(addStudent에는 사용자의 학생번호,이름 등이 들어가있다), -->
+	<form action="addStudentServlet" onsubmit="addStudent(event)"> 
+		학생번호:<input type="number" name ="sno" value="101"><br>
+		학생이름:<input type="text" name="sname" value="홍길동"><br>
+		영어:   <input type="number" name="eScore" value="80"><br>
+		국어:	   <input type="number" name="kScore" value="85"><br>
+		<input type = "submit" value="전송">
+		<input type = "button" value="변경">
+	</form>
+	</div>
+	
+	<div id="studentList">
+	<table border="1">
+		<thead>
+			<tr><th>번호</th><th>이름</th><th>영어</th><th>국어</th><th>기능</th></tr>
+		</thead>
+		<tbody id="list">
+		</tbody>
+	</table>
+	</div>
+	
+	<script src="post.js"></script>
+</body>
+</html>

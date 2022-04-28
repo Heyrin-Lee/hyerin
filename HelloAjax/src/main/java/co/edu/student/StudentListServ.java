@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/studentList.json")
 public class StudentListServ extends HttpServlet{
-
+//서버를 새로고침 했을 때 가져오는 list 목록
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//[{"studentNo":?,"studentName":?,"engScore":?,"korScore":?},{}]
@@ -22,7 +22,7 @@ public class StudentListServ extends HttpServlet{
 		resp.setContentType("text/plain;charset=UTF-8");
 		
 		String jsonString = "[";
-		for(int i=0; i<list.size(); i++) {
+		for(int i=0; i<list.size(); i++) { //배열처럼 결과를 넘기게 json 문자열을 만들었다
 			jsonString += "{\"studentNo\":"+list.get(i).getStudentNo()
 					   +",\"studentName\": \""+list.get(i).getStudentName()
 					   +"\",\"engScore\":"+list.get(i).getEngScore()
