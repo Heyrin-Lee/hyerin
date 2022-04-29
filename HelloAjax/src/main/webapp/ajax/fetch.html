@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="ajax2.js"></script>
+</head>
+<body>
+	<script>
+		//Ajax => XMLHttpRequest: => fetch();
+		//Ajax..XMLHttpRequest
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', '../studentList.json');
+		
+		//XHML을 사용하면 중복되는 함수가 늘어난다 => fetch();를 쓰면 효율적으로 구현가능.. .then() .then() .catch...
+		
+				
+		xhtp.send();
+		xhtp.onload = function() {
+			console.log(xhtp.responseText);
+		}
+		
+		//fetch();
+		fetch('../studentList.json') //fetch안에 요청하는 페이지를 적고
+			.then(function(result) { 
+				let val = result.json(); //pending.. stream->json(), text()... console에서 body값을 읽어오기 위해서 json형태로 바꾼다
+				console.log(val);
+				return val;
+			}) 
+			.then(function(result) { //then안에 성공적으로 실행됐을 때 실행할 함수를 넣고
+				console.log(result);
+			})
+			.catch(function(error) { // catch안에는 에러가 발생하면 실행할 함수를 넣는다
+				console.log(error);
+			}) 
+		
+	</script>
+	
+</body>
+</html>
