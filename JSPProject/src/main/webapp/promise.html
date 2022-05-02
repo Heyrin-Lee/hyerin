@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <script>
+    //ajax => XMLHttpRequest();
+    //1 -> 2 -> 3 순서대로 실행되도록 하기 위해서는 중첩코드를 만들어야 한다..callback1(
+                                                                            //callback2 (
+                                                                            //callback3 ();
+                                                                            //);
+                                                                            //);와 같이..
+    //그래서 보기 쉽도록 callback1()
+    //                  callback2()
+    //                  callback3()방식으로 쓰기 위해서 .then/ .catch 구문을 쓴다
+    
+    setTimeout(function() {
+      console.log('fun1');
+      setTimeout(function() {
+        console.log('fun2');
+        setTimeout(function() {
+          console.log('fun3');
+
+        },3000)
+      },2000)
+    },1000) //이렇게 복잡하게 코드를 만들지 않으면 비동기방식이기 때문에 몇번function이 먼저 실행될지 모른다..읽기 힘드뤄
+    // =>읽기 힘드니까 이렇게 복잡하게 만들지 말고 promise객체를 사용해서 처리될 때까지 기다리도록 .then/.catch를 사용하자
+
+    //promise 객체.. promise객체&fetch()는 자바스크립트/ servlet은 jsp
+    let val = 4;
+    let prom = new Promise(function (resolve,reject) { //함수정의구문: 성공하면 resolve, 실패하면 reject 함수를 실행한다
+      setTimeout(function() {
+      if(val>0) {
+        resolve('success');
+        val -= 2; //val값에 -2
+      } else
+        reject('error'); //reject()함수를 실행시킨다는 것은 정상실행이 실패했다는 의미이고 error라는 스트링 타입을 매개값으로 넘기겠다
+      }, 2000); //2초 뒤에 실행하도록 한다
+      }); 
+
+    prom
+      .then(function(result) { //them()의 매개값으로 들어가는 값이 함수
+        console.log(result);
+        return new Promise(function(resolve,reject){ //새로운 promise객체 생성..반환되는 값이 또 promise객체니까 .then/.catch로 한번 더 실행할 수 있다
+          setTimeout(function() {
+      if(val>0) {
+        resolve('success');
+        val -= 2; 
+          } else
+            reject('error'); 
+          }, 2000); 
+        }); 
+      }) //첫번째 then()이 끝날 때까지 대기한다->끝나면 두번째 then()을 실행한다
+      .then(function (result) {
+        console.log(result);
+        return new Promise(function(resolve,reject) {
+          setTimeout(function() {
+      if(val>0) {
+        resolve('success');
+        val -= 2; 
+          } else
+            reject('error'); 
+          }, 2000); 
+        }); 
+      })
+      .catch(function(reject) {
+        console.log(reject);
+      });
+
+  </script>
+</body>
+</html>
