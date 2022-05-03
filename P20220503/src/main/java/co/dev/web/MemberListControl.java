@@ -1,0 +1,27 @@
+package co.dev.web;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import co.dev.service.MemberService;
+import co.dev.vo.MemberVO;
+//전체 회원정보 리스트 조회
+public class MemberListControl implements Control {
+
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		MemberService service = new MemberService();
+		List<MemberVO> list = service.memberList();
+		
+		request.setAttribute("all", list);
+		
+		request.getRequestDispatcher("memberResult/memberListOutput.jsp").forward(request, response); //"memberResult/memberListOutput.jsp"로 이동!
+	}
+
+}
