@@ -5,8 +5,6 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +22,8 @@ public class FrontController extends HttpServlet {
 		list.put("/memberInsert.do", new MemberInsertControl()); //서블릿에 따라 입력작업/수정작업이 다르게 출력된다 => 주소 표시창이 어떤 서블릿을 호출하는지에 따라 작업을 구분해서 처리한다 
 		list.put("/memberUpdate.do", new MemberUpdateControl()); //"/memberUpdate.do":키값, new MemberUpdateControl(): value값
 		list.put("/memberList.do", new MemberListControl());
+		list.put("/memberSearch.do", new MemberSearchControl());
+		list.put("/memberDelete.do", new MemberDeleteControl());
 	}
 	
 	@Override
