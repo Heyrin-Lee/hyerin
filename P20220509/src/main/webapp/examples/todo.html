@@ -143,6 +143,10 @@ input {
 </ul>
 
 <script>
+
+var todos = [{title:?, status:?},{}]; //fetch사용: result => result.json()타입으로 변환해서
+//ajax 호출
+
 // Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByTagName("LI");
 var i;
@@ -159,6 +163,7 @@ var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
+  //ajax 호출(삭제기능)
     var div = this.parentElement;
     div.style.display = "none";
   }
@@ -168,16 +173,19 @@ for (i = 0; i < close.length; i++) {
 var list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
+  //ajax 호출(업데이트기능)
     ev.target.classList.toggle('checked');
   }
 }, false);
 
 // Create a new list item when clicking on the "Add" button
 function newElement() {
+  //if문 만들기
+  //ajax호출(추가기능)
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   var t = document.createTextNode(inputValue);
-  li.appendChild(t);
+  li.appendChild(t); //<li>타이틀</li>
   if (inputValue === '') {
     alert("You must write something!");
   } else {
