@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h3>삭제결과페이지</h3>
-	
-    <a href="${pageContext.servletContext.contextPath }/index.jsp">첫페이지</a>
-    
+footer test
 </body>
 </html>

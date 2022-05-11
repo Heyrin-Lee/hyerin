@@ -20,12 +20,8 @@
     </form>
 
     <!-- 도서삭제를 위한 화면 작성코드를 입력하세요. -->
-	<form action="${pageContext.servletContext.contextPath }/RemoveBook.do" method="post">
-		<input type="hidden" name="code" value="${book.bookCode }">
-		<input type="hidden" name="title" value="${book.bookTitle }">
-		<input type="hidden" name="author" value="${book.bookAuthor }">
-		<input type="hidden" name="press" value="${book.Press }">
-		<input type="hidden" name="price" value="${book.Price }">
+	<form action="${pageContext.servletContext.contextPath }/removeBook.do" method="post">
+		<input type="text" name="code" value="${book.bookCode }">
 		<input type="submit" value="삭제">
 	</form>
     <a href="${pageContext.servletContext.contextPath }/index.jsp">첫페이지</a>

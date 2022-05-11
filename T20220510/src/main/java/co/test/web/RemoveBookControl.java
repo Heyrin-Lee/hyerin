@@ -14,11 +14,7 @@ public class RemoveBookControl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String code = request.getParameter("cdoe");
-		String title = request.getParameter("title");
-		String author = request.getParameter("author");
-		String press = request.getParameter("press");
-		int price = Integer.parseInt(request.getParameter("price"));
+		String code = request.getParameter("code");
 		
 		BookService service = new BookService();
 		service.removeBook(code);

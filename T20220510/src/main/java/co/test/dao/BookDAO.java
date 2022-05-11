@@ -100,8 +100,8 @@ public class BookDAO extends DAO {
 	}
 
 	public void deleteBook(String bookCode) {
-		String sql = "delete from info_2\r\n"
-				+ "where book_code=?";
+		conn();
+		String sql = "delete from book_info2 where book_code=?";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, bookCode);
