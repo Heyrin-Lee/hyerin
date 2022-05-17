@@ -18,6 +18,8 @@
         <input type="submit" value="등록">
     </form>
     
+    <a href="../addBook.do?title=test&author=hong&press=yedam">링크..</a>
+    
     <a href="${pageContext.servletContext.contextPath }/index.jsp">첫페이지</a>
 
 </body>

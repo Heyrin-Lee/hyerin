@@ -28,6 +28,8 @@ public class AddBookControl implements Controller {
 		BookService service = new BookService();
 		service.addBook(vo);
 		
+		String title2 = request.getParameter("title");
+		
 		request.setAttribute("title", title);
 		request.getRequestDispatcher("result/addOutput.jsp").forward(request, response);
 
